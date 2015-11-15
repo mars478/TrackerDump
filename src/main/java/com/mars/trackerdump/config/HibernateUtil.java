@@ -27,7 +27,7 @@ public class HibernateUtil {
         configuration.setProperty("hibernate.connection.url", "jdbc:sqlite:" + db + ".db");
         //configuration.setProperty("hibernate.connection.username", "root");
         //configuration.setProperty("hibernate.connection.password", "root");
-        configuration.setProperty("dialect", "org.hibernate.dialect.MySQLDialect");
+        configuration.setProperty("dialect", "org.hibernate.dialect.SQLiteDialect");
         configuration.setProperty("show_sql", "true");
         configuration.setProperty(" hibernate.connection.pool_size", "10");
 

@@ -1,10 +1,9 @@
 package com.mars.trackerdump.fs;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.ArrayUtils;
@@ -54,16 +53,11 @@ public abstract class FSReader {
                 continue;
             }
 
-            try (RandomAccessFile raf = new RandomAccessFile(fName, "r");
-                    FileChannel fc = raf.getChannel();) {
-
-                ByteBuffer buf = ByteBuffer.allocate(1024);
-                while (fc.read(buf) > 0) {
-                    buf.flip();
-                    for (int i = 0; i < buf.limit(); i++) {
-                        System.out.print((char) buf.get());
-                    }
-                    buf.clear();
+            try (BufferedReader br = new BufferedReader(new FileReader(fName))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.print("FROM:" + fName + "\tREAD:\t" + line);
+                    writeDB(reader(line));
                 }
             }
         }

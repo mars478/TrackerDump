@@ -1,6 +1,8 @@
 package com.mars.trackerdump.fs;
 
+import com.mars.trackerdump.config.SQLite;
 import com.mars.trackerdump.db.TopicService;
+import com.mars.trackerdump.db.TopicServiceHB;
 import com.mars.trackerdump.entity.Topic;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +18,7 @@ public class TopicReader extends FSReader {
     public final static String CATEGORY_FNAME = "category_info.csv";
 
     @Autowired
-    TopicService topicDb;
+    TopicService topicDb = new TopicServiceHB();
 
     final static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -47,7 +49,7 @@ public class TopicReader extends FSReader {
     }
 
     public <Topic> void writeDB(Topic obj) {
-        topicDb.save((com.mars.trackerdump.entity.Topic) obj);
+        topicDb.setDbName(SQLite.DB).save((com.mars.trackerdump.entity.Topic) obj);
     }
 
     @Override

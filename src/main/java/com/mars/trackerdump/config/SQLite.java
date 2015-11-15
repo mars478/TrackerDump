@@ -8,11 +8,14 @@ import org.apache.commons.lang3.StringUtils;
 
 public class SQLite {
 
+    public static String DB = null;
+
     public static void init(String dbName) throws ClassNotFoundException, SQLException {
         if (StringUtils.isBlank(dbName)) {
             throw new IllegalArgumentException("Wrong DbName");
         }
 
+        DB = dbName;
         Class.forName("org.sqlite.JDBC");
 
         try (Connection c = DriverManager.getConnection("jdbc:sqlite:" + dbName + ".db");
