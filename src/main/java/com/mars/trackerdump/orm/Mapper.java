@@ -28,7 +28,7 @@ public class Mapper {
         Map<String, Object> ret = new HashMap<>();
         for (Method m : methods) {
             if (m.isAccessible() && (mName = m.getName()).toUpperCase().startsWith(GETTER_PREFIX)) {
-                ret.put(mName.toUpperCase(), m.invoke(obj));
+                ret.put(mName.toUpperCase().replaceFirst(GETTER_PREFIX, ""), m.invoke(obj));
             }
         }
         return ret;
