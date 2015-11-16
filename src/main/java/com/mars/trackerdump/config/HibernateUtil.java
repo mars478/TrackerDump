@@ -22,15 +22,16 @@ public class HibernateUtil {
 
         Configuration configuration = new Configuration();
 
-        configuration.addAnnotatedClass(Topic.class);
         configuration.setProperty("connection.driver_class", "org.sqlite.JDBC");
-        configuration.setProperty("hibernate.connection.url", "jdbc:sqlite:" + db + (StringUtils.endsWith(".db", db) ? "" : ".db"));
-        //configuration.setProperty("hibernate.connection.username", "root");
-        //configuration.setProperty("hibernate.connection.password", "root");
-        configuration.setProperty("dialect", "org.hibernate.dialect.SQLiteDialect");
+        configuration.setProperty("hibernate.connection.url", "jdbc:sqlite:" + db + (StringUtils.endsWith(db,".db") ? "" : ".db"));
+        configuration.setProperty("hibernate.connection.username", "");
+        configuration.setProperty("hibernate.connection.password", "");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect");
         configuration.setProperty("show_sql", "true");
-        configuration.setProperty("hibernate.connection.pool_size", "10");
-        configuration.setProperty("hbm2ddl.auto", "create-drop");
+        //configuration.setProperty("hibernate.connection.pool_size", "10");
+        configuration.setProperty("hbm2ddl.auto", "update");
+
+        configuration.addAnnotatedClass(Topic.class);
 
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         return sessionFactory = configuration.buildSessionFactory(builder.build());
