@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class FileReaderTest extends Assert {
@@ -14,9 +15,9 @@ public class FileReaderTest extends Assert {
     public FileReaderTest() {
     }
 
-    @Before
-    public void before() throws ClassNotFoundException, SQLException {
-        Config.setDbName("test1.db");
+    @BeforeClass
+    public static void setup() throws ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
     }
 
     @Test

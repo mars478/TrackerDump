@@ -1,4 +1,4 @@
-package com.mars.trackerdump.entity;
+package com.mars.trackerdump.db.common;
 
 import java.io.Serializable;
 

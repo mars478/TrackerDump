@@ -1,4 +1,4 @@
-package com.mars.trackerdump.db;
+package com.mars.trackerdump.service;
 
 import com.mars.trackerdump.config.HibernateUtil;
 import com.mars.trackerdump.entity.Topic;

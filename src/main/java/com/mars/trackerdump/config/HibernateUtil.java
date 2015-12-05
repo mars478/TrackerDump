@@ -1,6 +1,5 @@
 package com.mars.trackerdump.config;
 
-import com.mars.trackerdump.entity.Topic;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.SessionFactory;
@@ -22,16 +21,13 @@ public class HibernateUtil {
 
         Configuration configuration = new Configuration();
 
-        configuration.setProperty("connection.driver_class", "org.sqlite.JDBC");
-        configuration.setProperty("hibernate.connection.url", "jdbc:sqlite:" + db + (StringUtils.endsWith(db,".db") ? "" : ".db"));
-        configuration.setProperty("hibernate.connection.username", "");
+        configuration.setProperty("connection.driver_class", "org.postgresql.Driver");
+        configuration.setProperty("hibernate.connection.url", "jdbc:postgresql://192.168.1.6:5433/postgres");
+        configuration.setProperty("hibernate.connection.username", "postgres");
         configuration.setProperty("hibernate.connection.password", "");
-        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLiteDialect");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         configuration.setProperty("show_sql", "true");
         //configuration.setProperty("hibernate.connection.pool_size", "10");
-        configuration.setProperty("hbm2ddl.auto", "update");
-
-        configuration.addAnnotatedClass(Topic.class);
 
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         return sessionFactory = configuration.buildSessionFactory(builder.build());

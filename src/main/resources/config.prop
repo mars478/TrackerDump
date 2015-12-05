@@ -1,0 +1,3 @@
+username=postgres
+password=
+conn_str=jdbc:postgresql://192.168.1.6:5433/postgres

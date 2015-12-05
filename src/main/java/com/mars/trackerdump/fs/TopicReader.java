@@ -1,11 +1,12 @@
 package com.mars.trackerdump.fs;
 
 import com.mars.trackerdump.config.SQLite;
-import com.mars.trackerdump.db.TopicService;
-import com.mars.trackerdump.db.TopicServiceHB;
+import com.mars.trackerdump.service.TopicService;
+import com.mars.trackerdump.service.TopicServiceHB;
 import com.mars.trackerdump.entity.Topic;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import org.apache.commons.lang3.StringUtils;
@@ -37,8 +38,7 @@ public class TopicReader extends FSReader {
                     String topic_hash = a[3];
                     String topic_name = a[4];
                     long topic_size = Long.parseLong(a[5]);
-                    DATE_FORMATTER.parse(a[6]); // 2007-07-05 17:23:48
-                    String topic_date = a[6];
+                    Date topic_date = DATE_FORMATTER.parse(a[6]); // 2007-07-05 17:23:48;
                     return new Topic(forum_id, forum_name, topic_id, topic_hash, topic_name, topic_size, topic_date);
                 }
             }

@@ -1,5 +1,6 @@
 package com.mars.trackerdump.entity;
 
+import com.mars.trackerdump.db.common.Pair;
 import java.io.Serializable;
 
 public class Triad<K, V, T> extends Pair<K, V> implements Serializable {

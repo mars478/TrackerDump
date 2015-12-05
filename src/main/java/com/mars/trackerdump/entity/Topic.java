@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.DATE;
 
 @Entity
 @Table(name = "topic")
@@ -22,12 +24,13 @@ public class Topic {
     String topic_hash;
     String topic_name;
     long topic_size;
-    String topic_date;
+    @Temporal(DATE)
+    Date topic_date;
 
     public Topic() {
     }
 
-    public Topic(long forum_id, String forum_name, long topic_id, String topic_hash, String topic_name, long topic_size, String topic_date) {
+    public Topic(long forum_id, String forum_name, long topic_id, String topic_hash, String topic_name, long topic_size, Date topic_date) {
         this.forum_id = forum_id;
         this.forum_name = forum_name;
         this.topic_id = topic_id;
@@ -85,11 +88,11 @@ public class Topic {
         this.topic_size = topic_size;
     }
 
-    public String getTopic_date() {
+    public Date getTopic_date() {
         return topic_date;
     }
 
-    public void setTopic_date(String topic_date) {
+    public void setTopic_date(Date topic_date) {
         this.topic_date = topic_date;
     }
 
